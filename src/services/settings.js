@@ -3,8 +3,8 @@
  * Settings Service
  */
 
-const { getSettings, updateSettings } = require('../database');
-const { validateNotificationSettings, validateSchedulerSettings } = require('../utils/validators');
+import { getSettings, updateSettings } from '../database/index.js';
+import { validateNotificationSettings, validateSchedulerSettings } from '../utils/validators.js';
 
 /**
  * Get all settings
@@ -212,7 +212,7 @@ async function updateDefaultUseCart(useCart) {
   }
 }
 
-module.exports = {
+export {
   getAllSettings,
   getNotificationSettings,
   updateNotificationSettings,
@@ -222,4 +222,5 @@ module.exports = {
   updateDefaultPlayersCount,
   getDefaultUseCart,
   updateDefaultUseCart,
+  getSettings,
 };

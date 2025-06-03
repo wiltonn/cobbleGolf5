@@ -3,9 +3,9 @@
  * Booking Routes
  */
 
-const express = require('express');
-const { booking } = require('../services');
-const { getSchedulerStatus, runBookingTaskManually } = require('../scheduler');
+import express from 'express';
+import * as booking from '../services/booking.js';
+import { getSchedulerStatus, runBookingTaskManually } from '../scheduler/index.js';
 
 const router = express.Router();
 
@@ -216,4 +216,4 @@ router.post('/scheduler/run', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

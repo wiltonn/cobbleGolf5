@@ -3,13 +3,13 @@
  * Booking Service
  */
 
-const puppeteer = require('puppeteer-extra');
-const StealthPlugin = require('puppeteer-extra-plugin-stealth');
-const { getAll, getById, create, update, remove, query } = require('../database');
-const { validateBooking, validateTeeTimeSearchOptions } = require('../utils/validators');
-const { sendBookingConfirmation, sendBookingFailure } = require('./notification');
-const { getPlayerById } = require('./player');
-const { getSettings } = require('./settings');
+import puppeteer from 'puppeteer-extra';
+import StealthPlugin from 'puppeteer-extra-plugin-stealth';
+import { getAll, getById, create, update, remove, query } from '../database/index.js';
+import { validateBooking, validateTeeTimeSearchOptions } from '../utils/validators.js';
+import { sendBookingConfirmation, sendBookingFailure } from './notification.js';
+import { getPlayerById } from './player.js';
+import { getSettings } from './settings.js';
 
 // Add stealth plugin to puppeteer
 puppeteer.use(StealthPlugin());
@@ -533,7 +533,7 @@ async function bookTeeTime(bookingData, email) {
   }
 }
 
-module.exports = {
+export {
   getAllBookings,
   getBookingById,
   getUpcomingBookings,

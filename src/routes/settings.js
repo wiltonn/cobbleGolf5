@@ -3,9 +3,9 @@
  * Settings Routes
  */
 
-const express = require('express');
-const { settings } = require('../services');
-const { updateScheduler } = require('../scheduler');
+import express from 'express';
+import * as settings from '../services/settings.js';
+import { updateScheduler } from '../scheduler/index.js';
 
 const router = express.Router();
 
@@ -176,4 +176,4 @@ router.put('/default-use-cart', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

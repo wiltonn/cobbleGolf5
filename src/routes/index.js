@@ -3,10 +3,11 @@
  * Routes Index
  */
 
-const express = require('express');
-const playerRoutes = require('./player');
-const settingsRoutes = require('./settings');
-const bookingRoutes = require('./booking');
+import express from 'express';
+import playerRoutes from './player.js';
+import settingsRoutes from './settings.js';
+import bookingRoutes from './booking.js';
+import { getSchedulerStatus, runBookingTaskManually } from '../scheduler/index.js';
 
 const router = express.Router();
 
@@ -81,4 +82,4 @@ router.get('/api', (req, res) => {
   });
 });
 
-module.exports = router;
+export default router;

@@ -3,8 +3,8 @@
  * Player Routes
  */
 
-const express = require('express');
-const { player } = require('../services');
+import express from 'express';
+import * as player from '../services/player.js';
 
 const router = express.Router();
 
@@ -122,4 +122,4 @@ router.get('/search/:name', (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

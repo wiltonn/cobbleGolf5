@@ -3,8 +3,8 @@
  * Notification Service
  */
 
-const nodemailer = require('nodemailer');
-const { getSettings } = require('../database');
+import nodemailer from 'nodemailer';
+import { getSettings } from '../database/index.js';
 
 // Create a transporter object using SMTP transport
 let transporter = null;
@@ -233,7 +233,7 @@ Thank you for choosing Cobble Hills Golf Course!
   });
 }
 
-module.exports = {
+export {
   initializeTransporter,
   sendEmail,
   sendBookingConfirmation,

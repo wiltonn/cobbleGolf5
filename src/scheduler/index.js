@@ -3,9 +3,10 @@
  * Scheduler Module
  */
 
-const cron = require('node-cron');
-const { getSettings } = require('../database');
-const { booking, player } = require('../services');
+import cron from 'node-cron';
+import { getSettings } from '../database/index.js';
+import * as booking from '../services/booking.js';
+import * as player from '../services/player.js';
 
 // Store the scheduled tasks
 let scheduledTasks = {};
@@ -259,7 +260,7 @@ async function runBookingTaskManually() {
   }
 }
 
-module.exports = {
+export {
   initializeScheduler,
   scheduleBookingTask,
   stopScheduler,

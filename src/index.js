@@ -9,12 +9,18 @@ import cors from 'cors';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import compression from 'compression';
-import routes from './routes';
-import { initializeDatabase } from './database';
-import { initializeScheduler } from './scheduler';
+import routes from './routes/index.js';
+import { initializeDatabase } from './database/index.js';
+import { initializeScheduler } from './scheduler/index.js';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
-// Initialize the database
-initializeDatabase();
+(async () => {
+  await initializeDatabase();
+  initializeScheduler();
+})();
 
 // Create Express app
 const app = express();
@@ -53,9 +59,6 @@ app.use((err, req, res, next) => {
     ...(process.env.NODE_ENV === 'development' ? { error: err.message, stack: err.stack } : {}),
   });
 });
-
-// Initialize the scheduler
-initializeScheduler();
 
 // Export the app for use in start.js
 export default app;

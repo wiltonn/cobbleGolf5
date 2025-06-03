@@ -3,14 +3,14 @@
  * Services Index
  */
 
-const notificationService = require('./notification');
-const playerService = require('./player');
-const settingsService = require('./settings');
-const bookingService = require('./booking');
+import * as notification from './notification.js';
+import * as player from './player.js';
+import * as settings from './settings.js';
+import * as booking from './booking.js';
 
-module.exports = {
-  notification: notificationService,
-  player: playerService,
-  settings: settingsService,
-  booking: bookingService,
+export {
+  notification,
+  player,
+  settings,
+  booking,
 };

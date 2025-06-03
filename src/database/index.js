@@ -3,11 +3,11 @@
  * Database Module
  */
 
-const fs = require('fs');
-const path = require('path');
-const { Low } = require('lowdb');
-const { JSONFile } = require('lowdb/node');
-const { v4: uuidv4 } = require('uuid');
+import fs from 'fs';
+import path from 'path';
+import { Low } from 'lowdb';
+import { JSONFile } from 'lowdb';
+import { v4 as uuidv4 } from 'uuid';
 
 // Get database path from environment variables or use default
 const dbPath = process.env.DB_PATH || './data/db.json';
@@ -173,7 +173,7 @@ function getSettings() {
   return db.data.settings;
 }
 
-module.exports = {
+export {
   initializeDatabase,
   getAll,
   getById,

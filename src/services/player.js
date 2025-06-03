@@ -3,8 +3,8 @@
  * Player Service
  */
 
-const { getAll, getById, create, update, remove, query } = require('../database');
-const { validatePlayer } = require('../utils/validators');
+import { getAll, getById, create, update, remove, query } from '../database/index.js';
+import { validatePlayer } from '../utils/validators.js';
 
 // Collection name in the database
 const COLLECTION = 'players';
@@ -149,7 +149,7 @@ function searchPlayersByName(name) {
   );
 }
 
-module.exports = {
+export {
   getAllPlayers,
   getPlayerById,
   createPlayer,

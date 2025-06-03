@@ -3,7 +3,7 @@
  * Validators Module
  */
 
-const validator = require('validator');
+import validator from 'validator';
 
 /**
  * Validate a player object
@@ -272,7 +272,7 @@ function validateTeeTimeSearchOptions(options) {
   };
 }
 
-module.exports = {
+export {
   validatePlayer,
   validateBooking,
   validateNotificationSettings,
