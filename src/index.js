@@ -3,15 +3,15 @@
  * Main Application File
  */
 
-const express = require('express');
-const path = require('path');
-const cors = require('cors');
-const morgan = require('morgan');
-const helmet = require('helmet');
-const compression = require('compression');
-const routes = require('./routes');
-const { initializeDatabase } = require('./database');
-const { initializeScheduler } = require('./scheduler');
+import express from 'express';
+import path from 'path';
+import cors from 'cors';
+import morgan from 'morgan';
+import helmet from 'helmet';
+import compression from 'compression';
+import routes from './routes';
+import { initializeDatabase } from './database';
+import { initializeScheduler } from './scheduler';
 
 // Initialize the database
 initializeDatabase();
@@ -58,4 +58,4 @@ app.use((err, req, res, next) => {
 initializeScheduler();
 
 // Export the app for use in start.js
-module.exports = app;
+export default app;

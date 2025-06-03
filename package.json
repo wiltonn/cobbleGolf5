@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "An application to automate booking tee times at Cobble Hills Golf Course",
   "main": "start.js",
+  "type": "module",
   "scripts": {
     "start": "node start.js",
     "dev": "nodemon start.js",

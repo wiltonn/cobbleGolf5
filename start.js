@@ -3,8 +3,8 @@
  * Server Startup File
  */
 
-require('dotenv').config();
-const app = require('./src/index');
+import 'dotenv/config';
+import app from './src/index.js';
 
 // Get port from environment variable or use default
 const PORT = process.env.PORT || 3000;
