@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cobble Hills Golf Booking App</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⛳</text></svg>">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+  <div id="app">
+    <header>
+      <div class="logo">
+        <span class="logo-icon">⛳</span>
+        <h1>Cobble Hills Golf Booking</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#" data-page="dashboard" class="active">Dashboard</a></li>
+          <li><a href="#" data-page="search">Search Tee Times</a></li>
+          <li><a href="#" data-page="bookings">My Bookings</a></li>
+          <li><a href="#" data-page="players">Players</a></li>
+          <li><a href="#" data-page="settings">Settings</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Dashboard Page -->
+      <section id="dashboard" class="page active">
+        <div class="dashboard-header">
+          <h2>Dashboard</h2>
+          <div class="actions">
+            <button id="refresh-dashboard" class="btn btn-secondary">
+              <i class="fas fa-sync-alt"></i> Refresh
+            </button>
+          </div>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="card">
+            <div class="card-header">
+              <h3>Upcoming Bookings</h3>
+              <a href="#" data-page="bookings" class="view-all">View All</a>
+            </div>
+            <div class="card-body">
+              <div id="upcoming-bookings-list" class="list-container">
+                <p class="loading">Loading upcoming bookings...</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3>Scheduler Status</h3>
+            </div>
+            <div class="card-body">
+              <div id="scheduler-status" class="status-container">
+                <p class="loading">Loading scheduler status...</p>
+              </div>
+              <div class="card-actions">
+                <button id="run-scheduler" class="btn btn-primary">
+                  <i class="fas fa-play"></i> Run Now
+                </button>
+                <button id="toggle-scheduler" class="btn btn-secondary">
+                  <i class="fas fa-power-off"></i> <span id="toggle-scheduler-text">Enable</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3>Quick Search</h3>
+            </div>
+            <div class="card-body">
+              <form id="quick-search-form">
+                <div class="form-group">
+                  <label for="quick-search-date">Date</label>
+                  <input type="date" id="quick-search-date" required>
+                </div>
+                <div class="form-group">
+                  <label for="quick-search-players">Players</label>
+                  <select id="quick-search-players" required>
+                    <option value="1">1 Player</option>
+                    <option value="2">2 Players</option>
+                    <option value="3">3 Players</option>
+                    <option value="4" selected>4 Players</option>
+                  </select>
+                </div>
+                <div class="form-actions">
+                  <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-search"></i> Search
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3>Players</h3>
+              <a href="#" data-page="players" class="view-all">Manage</a>
+            </div>
+            <div class="card-body">
+              <div id="players-list" class="list-container">
+                <p class="loading">Loading players...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Search Tee Times Page -->
+      <section id="search" class="page">
+        <h2>Search Tee Times</h2>
+        
+        <div class="search-container">
+          <form id="search-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="search-date">Date</label>
+                <input type="date" id="search-date" required>
+              </div>
+              <div class="form-group">
+                <label for="search-start-time">Start Time</label>
+                <input type="time" id="search-start-time" value="07:00">
+              </div>
+              <div class="form-group">
+                <label for="search-end-time">End Time</label>
+                <input type="time" id="search-end-time" value="19:00">
+              </div>
+              <div class="form-group">
+                <label for="search-players">Players</label>
+                <select id="search-players" required>
+                  <option value="1">1 Player</option>
+                  <option value="2">2 Players</option>
+                  <option value="3">3 Players</option>
+                  <option value="4" selected>4 Players</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">
+                <i class="fas fa-search"></i> Search
+              </button>
+              <button type="reset" class="btn btn-secondary">
+                <i class="fas fa-undo"></i> Reset
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div id="search-results" class="results-container">
+          <div id="search-results-placeholder" class="placeholder">
+            <i class="fas fa-search fa-3x"></i>
+            <p>Search for available tee times</p>
+          </div>
+          <div id="search-results-loading" class="loading-container hidden">
+            <i class="fas fa-spinner fa-spin fa-3x"></i>
+            <p>Searching for tee times...</p>
+          </div>
+          <div id="search-results-empty" class="empty-container hidden">
+            <i class="fas fa-calendar-times fa-3x"></i>
+            <p>No tee times available for the selected criteria</p>
+          </div>
+          <div id="search-results-error" class="error-container hidden">
+            <i class="fas fa-exclamation-triangle fa-3x"></i>
+            <p id="search-results-error-message">An error occurred</p>
+          </div>
+          <div id="search-results-list" class="hidden">
+            <h3>Available Tee Times</h3>
+            <div class="tee-times-list"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bookings Page -->
+      <section id="bookings" class="page">
+        <h2>My Bookings</h2>
+        
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="upcoming">Upcoming</button>
+          <button class="tab-btn" data-tab="past">Past</button>
+        </div>
+        
+        <div id="upcoming-tab" class="tab-content active">
+          <div id="upcoming-bookings" class="bookings-list">
+            <p class="loading">Loading upcoming bookings...</p>
+          </div>
+        </div>
+        
+        <div id="past-tab" class="tab-content">
+          <div id="past-bookings" class="bookings-list">
+            <p class="loading">Loading past bookings...</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Players Page -->
+      <section id="players" class="page">
+        <div class="page-header">
+          <h2>Players</h2>
+          <button id="add-player-btn" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Add Player
+          </button>
+        </div>
+        
+        <div id="players-container" class="players-list">
+          <p class="loading">Loading players...</p>
+        </div>
+      </section>
+
+      <!-- Settings Page -->
+      <section id="settings" class="page">
+        <h2>Settings</h2>
+        
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="general">General</button>
+          <button class="tab-btn" data-tab="scheduler">Scheduler</button>
+          <button class="tab-btn" data-tab="notifications">Notifications</button>
+        </div>
+        
+        <div id="general-tab" class="tab-content active">
+          <form id="general-settings-form">
+            <div class="form-group">
+              <label for="default-players">Default Number of Players</label>
+              <select id="default-players">
+                <option value="1">1 Player</option>
+                <option value="2">2 Players</option>
+                <option value="3">3 Players</option>
+                <option value="4" selected>4 Players</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="default-use-cart">Default Use Cart</label>
+              <div class="toggle-switch">
+                <input type="checkbox" id="default-use-cart" checked>
+                <label for="default-use-cart"></label>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+          </form>
+        </div>
+        
+        <div id="scheduler-tab" class="tab-content">
+          <form id="scheduler-settings-form">
+            <div class="form-group">
+              <label for="scheduler-enabled">Enable Scheduler</label>
+              <div class="toggle-switch">
+                <input type="checkbox" id="scheduler-enabled">
+                <label for="scheduler-enabled"></label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="scheduler-cron">Schedule (Cron Expression)</label>
+              <input type="text" id="scheduler-cron" placeholder="0 7 * * *">
+              <small>Default: Run at 7:00 AM every day (0 7 * * *)</small>
+            </div>
+            <div class="form-group">
+              <label for="booking-days-ahead">Days Ahead to Book</label>
+              <input type="number" id="booking-days-ahead" min="1" max="14" value="7">
+              <small>How many days in advance to book (1-14)</small>
+            </div>
+            <div class="form-group">
+              <label for="preferred-tee-time">Preferred Tee Time</label>
+              <input type="time" id="preferred-tee-time" value="09:00">
+            </div>
+            <div class="form-group">
+              <label for="tee-time-flexibility">Tee Time Flexibility (minutes)</label>
+              <input type="number" id="tee-time-flexibility" min="0" max="240" step="15" value="60">
+              <small>How flexible you are around your preferred time</small>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+          </form>
+        </div>
+        
+        <div id="notifications-tab" class="tab-content">
+          <form id="notifications-settings-form">
+            <div class="form-group">
+              <label for="email-notifications">Email Notifications</label>
+              <div class="toggle-switch">
+                <input type="checkbox" id="email-notifications" checked>
+                <label for="email-notifications"></label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="notification-email">Notification Email</label>
+              <input type="email" id="notification-email" placeholder="your@email.com">
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <!-- Modals -->
+    <div id="modal-overlay" class="modal-overlay hidden"></div>
+
+    <!-- Add/Edit Player Modal -->
+    <div id="player-modal" class="modal hidden">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="player-modal-title">Add Player</h3>
+          <button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form id="player-form">
+            <input type="hidden" id="player-id">
+            <div class="form-group">
+              <label for="player-name">Name</label>
+              <input type="text" id="player-name" required>
+            </div>
+            <div class="form-group">
+              <label for="player-email">Email</label>
+              <input type="email" id="player-email">
+              <small>Optional - for notifications</small>
+            </div>
+            <div class="form-group">
+              <label for="player-phone">Phone</label>
+              <input type="tel" id="player-phone">
+              <small>Optional</small>
+            </div>
+            <div class="form-actions">
+              <button type="button" class="btn btn-secondary modal-cancel">Cancel</button>
+              <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Book Tee Time Modal -->
+    <div id="booking-modal" class="modal hidden">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Book Tee Time</h3>
+          <button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div id="booking-details" class="booking-details">
+            <p><strong>Date:</strong> <span id="booking-date"></span></p>
+            <p><strong>Time:</strong> <span id="booking-time"></span></p>
+            <p><strong>Players:</strong> <span id="booking-players-count"></span></p>
+          </div>
+          <form id="booking-form">
+            <input type="hidden" id="booking-url">
+            <div class="form-group">
+              <label>Select Players</label>
+              <div id="player-selection" class="player-selection">
+                <p class="loading">Loading players...</p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="booking-use-cart">Use Cart</label>
+              <div class="toggle-switch">
+                <input type="checkbox" id="booking-use-cart" checked>
+                <label for="booking-use-cart"></label>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="button" class="btn btn-secondary modal-cancel">Cancel</button>
+              <button type="submit" class="btn btn-primary">Book Now</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirm-modal" class="modal hidden">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="confirm-title">Confirm Action</h3>
+          <button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p id="confirm-message">Are you sure you want to proceed?</p>
+          <div class="form-actions">
+            <button type="button" class="btn btn-secondary modal-cancel">Cancel</button>
+            <button type="button" id="confirm-action" class="btn btn-danger">Confirm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

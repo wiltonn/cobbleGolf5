@@ -1,0 +1,17 @@
+# Task ID: 3
+# Title: Web Scraping and Automation Setup
+# Status: pending
+# Dependencies: 1
+# Priority: high
+# Description: Implement the core web scraping functionality to interact with the booking website.
+# Details:
+Set up Puppeteer for web automation:
+- Create a browser automation module
+- Implement functions for navigating to the booking website
+- Implement login functionality using stored credentials
+- Create functions for navigating to the 'Cobble Hills Mens' League 2025' section
+- Implement error handling and retry mechanisms
+- Add logging for debugging purposes
+
+# Test Strategy:
+Test the automation by running it against the actual website in headful mode to observe the behavior. Verify that it can successfully navigate to the booking page and log in.

@@ -1,0 +1,17 @@
+# Task ID: 2
+# Title: Database Implementation
+# Status: pending
+# Dependencies: 1
+# Priority: high
+# Description: Create the database schema and implement basic CRUD operations for players and bookings.
+# Details:
+Implement the database layer using SQLite:
+- Create database schema for Player and Booking models
+- Implement functions for creating, reading, updating, and deleting players
+- Implement functions for creating, reading, updating, and deleting bookings
+- Add functions for querying bookings by date, status, etc.
+- Initialize the database with default players (Nathan Wilton, Dave Cole, Dan Clark, and Gord Johnson)
+- Implement settings storage for application configuration
+
+# Test Strategy:
+Write unit tests for database operations. Verify that all CRUD operations work correctly and that the database schema matches the requirements.

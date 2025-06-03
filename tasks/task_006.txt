@@ -1,0 +1,16 @@
+# Task ID: 6
+# Title: Email Notification System
+# Status: pending
+# Dependencies: 5
+# Priority: medium
+# Description: Implement the email notification system for booking confirmations.
+# Details:
+Create the email notification system:
+- Set up Nodemailer with SMTP configuration
+- Create email templates for booking confirmations
+- Implement functions to send emails with booking details
+- Add error handling for email sending failures
+- Implement retry mechanism for failed email attempts
+
+# Test Strategy:
+Test the email notification system by sending test emails and verifying that they are received with the correct content and formatting.

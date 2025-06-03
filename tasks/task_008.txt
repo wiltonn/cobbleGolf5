@@ -1,0 +1,17 @@
+# Task ID: 8
+# Title: Automated Booking Scheduler
+# Status: pending
+# Dependencies: 5, 6
+# Priority: medium
+# Description: Implement a scheduler to automatically check for and book tee times.
+# Details:
+Create an automated scheduling system:
+- Implement a scheduler using Node.js (e.g., node-cron)
+- Create configurable schedules for checking tee times
+- Implement logic to automatically book preferred times when available
+- Add configurable criteria for automatic booking
+- Implement notification for scheduled actions
+- Add logging for all automated activities
+
+# Test Strategy:
+Test the scheduler by configuring it to run at short intervals and verifying that it correctly checks for tee times and performs the expected actions.

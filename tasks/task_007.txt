@@ -1,0 +1,17 @@
+# Task ID: 7
+# Title: Basic Web Interface
+# Status: pending
+# Dependencies: 2, 3, 4, 5
+# Priority: medium
+# Description: Create a simple web interface for interacting with the application.
+# Details:
+Implement a basic web interface using Express and simple HTML/CSS/JavaScript:
+- Create a dashboard page showing upcoming bookings
+- Implement a form for selecting players for a booking
+- Add a page for viewing available tee times
+- Create a settings page for configuring preferences
+- Implement basic styling for usability
+- Add simple client-side validation
+
+# Test Strategy:
+Test the web interface manually by navigating through all pages and verifying that they display the correct information and that all forms work as expected.
